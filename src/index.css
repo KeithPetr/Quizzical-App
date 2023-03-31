@@ -1,0 +1,69 @@
+:root {
+  --font-Inter: "Inter", sans-serif;
+  --font-Karla: "Karla", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #f5f7fb;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* ----------------------- Landing Page --------------------------------- */
+
+.landing-container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.landing-title {
+  font-size: 2.5rem;
+  color: #293264;
+  font-family: var(--font-Karla);
+  margin: 0;
+}
+
+.landing-description {
+  margin: 0;
+  font-size: 1.2rem;
+  font-family: var(--font-Inter);
+  margin-top: 0.5em;
+}
+
+.start-btn {
+  font-size: 1.2rem;
+  padding: 1em 3em;
+  font-family: var(--font-Inter);
+  margin-top: 1em;
+  background-color: #4d5b9e;
+  border-radius: 15px;
+  border: none;
+  color: #f5f7fb;
+  cursor: pointer;
+}
+
+.blue-blob {
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+}
+
+.yellow-blob {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+}
