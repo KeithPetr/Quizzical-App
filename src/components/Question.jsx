@@ -1,16 +1,11 @@
 import React from "react";
 
+
 export default function Question(props) {
+  console.log(props);
 
-
-  const question = props.data.map((question) => {
-    return decodeHtml(question.question);
-  });
-
-  const answers = props.data.map((obj) => {
-    return obj.allAnswers.map((obj) => {
-      return <button>{obj.answer}</button>;
-    });
+  const answers = props.allAnswers.map((obj) => {
+    return <button className="answer-btn">{obj.answer}</button>;
   });
 
   function decodeHtml(html) {
@@ -21,7 +16,7 @@ export default function Question(props) {
 
   return (
     <section className="question-container">
-      <p className="question">{question}</p>;
+      <p className="question">{decodeHtml(props.question)}</p>
       <div className="answers-container">{answers}</div>
     </section>
   );

@@ -11,18 +11,16 @@ body {
   min-width: 320px;
   margin: 0;
   background: #f5f7fb;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
 /* ----------------------- Landing Page --------------------------------- */
 
 .landing-container {
   width: 90%;
-  margin: 0 auto;
+  margin: 18em auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,24 +58,64 @@ body {
   position: absolute;
   left: 0%;
   bottom: 0%;
+  z-index: -1;
 }
 
 .yellow-blob {
   position: absolute;
   right: 0%;
   top: 0%;
+  z-index: -1;
+}
+
+/* --------------------- Quiz Component ------------------------- */
+
+.quiz-container {
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.small {
+  height: 50px;
+  position: fixed;
+  overflow: hidden;
+  z-index: -1;
 }
 
 /* -------------------- Question Component ---------------------- */
 
 .question-container {
-  height: 100vh;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 1em;
 }
 
 .question {
-  margin-top: 1em;
   color: #293264;
   font-family: var(--font-Karla);
   font-weight: 700;
   font-size: 1.2rem;
+  margin: 0;
+}
+
+.answers-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.answer-btn {
+  border-radius: 8px;
+  border: 1px solid #4D5B9E;
+  background: transparent;
+  padding: .25em .75em;
+  margin-bottom: 1em;
+  font-size: 1.2rem;
+}
+
+.answers-container:not(last-child) {
+  border-bottom: 0.8px solid #bec1d0;
 }
