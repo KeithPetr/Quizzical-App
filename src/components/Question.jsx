@@ -1,11 +1,23 @@
-import React from "react";
-
+import React, { useState } from "react";
 
 export default function Question(props) {
   console.log(props);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
 
   const answers = props.allAnswers.map((obj) => {
-    return <button className="answer-btn">{obj.answer}</button>;
+    return (
+      <button
+      key={obj.id}
+        className={`answer-btn ${obj.id === selectedAnswer ? "selected" : ""}`}
+        onClick={() => {
+          setSelectedAnswer(obj.id);
+          setIsAnswerCorrect(obj.isCorrect)
+        }}
+      >
+        {decodeHtml(obj.answer)}
+      </button>
+    );
   });
 
   function decodeHtml(html) {

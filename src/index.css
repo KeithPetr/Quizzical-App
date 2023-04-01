@@ -114,6 +114,14 @@ body {
   padding: .25em .75em;
   margin-bottom: 1em;
   font-size: 1.2rem;
+  cursor: pointer;
+  font-family: var(--font-Inter);
+  color: #293264;
+}
+
+.selected {
+  background: #D6DBF5;
+  border: none;
 }
 
 .answers-container:not(last-child) {
