@@ -67,3 +67,17 @@ body {
   right: 0%;
   top: 0%;
 }
+
+/* -------------------- Question Component ---------------------- */
+
+.question-container {
+  height: 100vh;
+}
+
+.question {
+  margin-top: 1em;
+  color: #293264;
+  font-family: var(--font-Karla);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
