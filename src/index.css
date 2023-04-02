@@ -127,3 +127,26 @@ body {
 .answers-container:not(last-child) {
   border-bottom: 0.8px solid #bec1d0;
 }
+
+.check-answers-btn {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: none;
+  background: #4D5B9E;
+  padding: 1em .75em;
+  margin-bottom: 1em;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-family: var(--font-Inter);
+  color: #FFFFFF;
+  font-family: var(--font-Inter);
+}
+
+.correct {
+  background: #94D7A2;
+}
+
+.incorrect {
+  background: #F8BCBC;
+}

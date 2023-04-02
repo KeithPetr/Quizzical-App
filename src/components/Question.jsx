@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 
 export default function Question(props) {
-  console.log(props);
+  console.log();
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
 
   const answers = props.allAnswers.map((obj) => {
+    const isSelected = obj.id === selectedAnswer;
+    const isCorrect = obj.isCorrect;
+    const isIncorrect = props.showAnswers && isSelected && !isCorrect;
+    const className = `answer-btn 
+      ${obj.id === selectedAnswer ? "selected" : ""} 
+      ${props.showAnswers && isCorrect ? "correct" : ""} 
+      ${props.showAnswers && isIncorrect ? "incorrect" : ""}`;
+
     return (
       <button
-      key={obj.id}
-        className={`answer-btn ${obj.id === selectedAnswer ? "selected" : ""}`}
+        key={obj.id}
+        className={className}
         onClick={() => {
           setSelectedAnswer(obj.id);
-          setIsAnswerCorrect(obj.isCorrect)
         }}
       >
         {decodeHtml(obj.answer)}
