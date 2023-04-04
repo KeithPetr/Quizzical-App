@@ -33,7 +33,7 @@ export default function QuizPage(props) {
       setQuizComplete(true);
     }
   }
-  console.log("quizComplete:", quizComplete)
+ 
   function getTotalCorrect() {
     const totalCorrect = props.data
       .map((obj) =>
