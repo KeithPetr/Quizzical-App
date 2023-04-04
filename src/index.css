@@ -71,7 +71,6 @@ body {
 /* --------------------- Quiz Component ------------------------- */
 
 .quiz-container {
-  border: 1px solid blue;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -159,4 +158,19 @@ body {
 
 .incorrect {
   background: #F8BCBC;
+}
+
+/* ------------- Media Queries ------------------------------ */
+
+@media (min-width: 600px) {
+
+  .answers-container {
+    flex-direction: row;
+    column-gap: 1em;
+    flex-wrap: wrap;
+  }
+
+  .small {
+    height: 150px;
+  }
 }

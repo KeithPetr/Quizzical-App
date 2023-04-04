@@ -16,6 +16,7 @@ export default function Question(props) {
       <button
         key={obj.id}
         className={className}
+        disabled={props.answersDisabled}
         onClick={() => {
           setSelectedAnswer(obj.id);
           props.onAnswerSelect(obj.id);

@@ -10,6 +10,7 @@ export default function QuizPage(props) {
   const [showResults, setShowResults] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [quizComplete, setQuizComplete] = useState(false);
+  const [answersDisabled, setAnswersDisabled] = useState(false);
 
   const questionElements = props.data.map((obj) => (
     <Question
@@ -23,6 +24,7 @@ export default function QuizPage(props) {
           [obj.id]: answerId,
         })
       }
+      answersDisabled={answersDisabled}
     />
   ));
 
@@ -31,6 +33,7 @@ export default function QuizPage(props) {
       setShowAnswers(true);
       setShowResults(true);
       setQuizComplete(true);
+      setAnswersDisabled(true);
     }
   }
 
@@ -40,7 +43,7 @@ export default function QuizPage(props) {
     setShowResults(false);
     setQuizComplete(false);
     props.resetQuiz();
-    props.setQuizComplete(false)
+    props.setQuizComplete(false);
   }
 
   function getTotalCorrect() {
@@ -62,7 +65,7 @@ export default function QuizPage(props) {
       {questionElements}
       {showResults && (
         <div className="results">
-          You scored {getTotalCorrect().totalCorrect} correct answers out of{" "}
+          You scored {getTotalCorrect().totalCorrect} correct out of{" "}
           {getTotalCorrect().total} questions
         </div>
       )}
