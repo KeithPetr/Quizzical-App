@@ -33,34 +33,39 @@ export default function QuizPage(props) {
       setQuizComplete(true);
     }
   }
-
+  console.log("quizComplete:", quizComplete)
   function getTotalCorrect() {
     const totalCorrect = props.data
       .map((obj) =>
         obj.allAnswers.filter(
-          (answer) =>
-            answer.isCorrect && answer.id === selectedAnswers[obj.id]
+          (answer) => answer.isCorrect && answer.id === selectedAnswers[obj.id]
         )
       )
       .flat().length;
 
     const total = props.data.length;
-    console.log(totalCorrect)
+    console.log(totalCorrect);
     return { totalCorrect, total };
   }
 
   return (
     <div className="quiz-container">
       {questionElements}
-      <button className="check-answers-btn" onClick={checkAnswers}>
-        {showResults ? "Play Again" : "Check Answers"}
-      </button>
       {showResults && (
         <div className="results">
           You scored {getTotalCorrect().totalCorrect} correct answers out of{" "}
           {getTotalCorrect().total} questions
         </div>
       )}
+      {quizComplete ? (
+        <button className="play-again-btn">Play Again</button>
+      ) : (
+        <button className="check-answers-btn" onClick={checkAnswers}>
+          Check Answers
+        </button>
+      )}
+
+      
       <img
         src={yellowBlob}
         alt="yellow blob image"

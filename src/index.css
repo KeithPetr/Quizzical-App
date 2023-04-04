@@ -128,7 +128,7 @@ body {
   border-bottom: 0.8px solid #bec1d0;
 }
 
-.check-answers-btn {
+.check-answers-btn, .play-again-btn {
   width: 90%;
   margin: 0 auto;
   border-radius: 8px;
