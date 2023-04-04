@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 export default function Question(props) {
-  console.log();
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const answers = props.allAnswers.map((obj) => {
@@ -19,6 +18,7 @@ export default function Question(props) {
         className={className}
         onClick={() => {
           setSelectedAnswer(obj.id);
+          props.onAnswerSelect(obj.id);
         }}
       >
         {decodeHtml(obj.answer)}

@@ -1,11 +1,15 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Question from "./Question.jsx";
 import blueBlob from "../images/blue-blob.png";
 import yellowBlob from "../images/yellow-blob.png";
 
 export default function QuizPage(props) {
-  const [showAnswers, setShowAnswers,] = useState(false)
-  const [showResults, setShowResults] = useState(false)
+  console.log(props.data[0].allAnswers.length);
+
+  const [showAnswers, setShowAnswers] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [quizComplete, setQuizComplete] = useState(false);
 
   const questionElements = props.data.map((obj) => (
     <Question
@@ -13,25 +17,50 @@ export default function QuizPage(props) {
       question={obj.question}
       allAnswers={obj.allAnswers}
       showAnswers={showAnswers}
+      onAnswerSelect={(answerId) =>
+        setSelectedAnswers({
+          ...selectedAnswers,
+          [obj.id]: answerId,
+        })
+      }
     />
   ));
 
   function checkAnswers() {
-    setShowAnswers(true)
-    setShowResults(true)
+    if (Object.keys(selectedAnswers).length === props.data.length) {
+      setShowAnswers(true);
+      setShowResults(true);
+      setQuizComplete(true);
+    }
   }
 
-  function restarQuiz() {
-    setShowAnswers(false)
-    setShowResults(false)
-    props.handleRestart()
+  function getTotalCorrect() {
+    const totalCorrect = props.data
+      .map((obj) =>
+        obj.allAnswers.filter(
+          (answer) =>
+            answer.isCorrect && answer.id === selectedAnswers[obj.id]
+        )
+      )
+      .flat().length;
+
+    const total = props.data.length;
+    console.log(totalCorrect)
+    return { totalCorrect, total };
   }
 
   return (
     <div className="quiz-container">
       {questionElements}
-      <button className="check-answers-btn" onClick={restarQuiz}>
-        {showResults ? "Play Again" : "Check Answers"}</button>
+      <button className="check-answers-btn" onClick={checkAnswers}>
+        {showResults ? "Play Again" : "Check Answers"}
+      </button>
+      {showResults && (
+        <div className="results">
+          You scored {getTotalCorrect().totalCorrect} correct answers out of{" "}
+          {getTotalCorrect().total} questions
+        </div>
+      )}
       <img
         src={yellowBlob}
         alt="yellow blob image"
