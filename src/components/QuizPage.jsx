@@ -33,7 +33,16 @@ export default function QuizPage(props) {
       setQuizComplete(true);
     }
   }
- 
+
+  function resetQuiz() {
+    setSelectedAnswers({});
+    setShowAnswers(false);
+    setShowResults(false);
+    setQuizComplete(false);
+    props.resetQuiz();
+    props.setQuizComplete(false)
+  }
+
   function getTotalCorrect() {
     const totalCorrect = props.data
       .map((obj) =>
@@ -58,14 +67,15 @@ export default function QuizPage(props) {
         </div>
       )}
       {quizComplete ? (
-        <button className="play-again-btn">Play Again</button>
+        <button className="play-again-btn" onClick={resetQuiz}>
+          Play Again
+        </button>
       ) : (
         <button className="check-answers-btn" onClick={checkAnswers}>
           Check Answers
         </button>
       )}
 
-      
       <img
         src={yellowBlob}
         alt="yellow blob image"

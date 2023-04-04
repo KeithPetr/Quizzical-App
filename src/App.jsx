@@ -6,9 +6,11 @@ import { nanoid } from "nanoid";
 export default function App() {
   const [start, setStart] = useState(false);
   const [quizQuestions, setQuizQuestions] = useState();
+  const [quizComplete, setQuizComplete] = useState(false);
 
   function startQuiz() {
     setStart(true);
+    setQuizComplete(false);
   }
 
   function randomArray(array) {
@@ -24,7 +26,9 @@ export default function App() {
     return newArray;
   }
 
-  useEffect(() => {
+  function resetQuiz() {
+    setQuizComplete(false);
+    setStart(false)
     fetch(`https://opentdb.com/api.php?amount=5`)
       .then((res) => res.json())
       .then((data) => {
@@ -35,20 +39,26 @@ export default function App() {
               question: res.question,
               correctAnswer: res.correct_answer,
               incorrectAnswers: res.incorrect_answers,
-              allAnswers: randomArray([res.correct_answer, ...res.incorrect_answers,]).map
-              (answer => {
+              allAnswers: randomArray([
+                res.correct_answer,
+                ...res.incorrect_answers,
+              ]).map((answer) => {
                 return {
                   id: nanoid(),
                   answer: answer,
                   isCorrect: answer === res.correct_answer,
                   isSelected: false,
                   parent: res.question,
-                }
+                };
               }),
             };
           })
         );
       });
+  }
+
+  useEffect(() => {
+    resetQuiz();
   }, []);
 
   return (
@@ -56,7 +66,13 @@ export default function App() {
       {!start ? (
         <StartPage handleClick={startQuiz} />
       ) : (
-        <QuizPage data={quizQuestions} />
+        <QuizPage
+          data={quizQuestions}
+          resetQuiz={resetQuiz}
+          quizComplete={quizComplete}
+          setQuizComplete={setQuizComplete}
+          setStart={setStart}
+        />
       )}
     </section>
   );
