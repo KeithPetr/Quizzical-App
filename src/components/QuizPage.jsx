@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Question from "./Question.jsx";
-import blueBlob from "../images/blue-blob.png";
-import yellowBlob from "../images/yellow-blob.png";
+import Layout from "./Layout.jsx";
 
 export default function QuizPage(props) {
   console.log(props.data[0].allAnswers.length);
@@ -56,35 +55,29 @@ export default function QuizPage(props) {
       .flat().length;
 
     const total = props.data.length;
-    console.log(totalCorrect);
     return { totalCorrect, total };
   }
 
   return (
-    <div className="quiz-container">
-      {questionElements}
-      {showResults && (
-        <div className="results">
-          You scored {getTotalCorrect().totalCorrect} correct out of{" "}
-          {getTotalCorrect().total} questions
-        </div>
-      )}
-      {quizComplete ? (
-        <button className="play-again-btn" onClick={resetQuiz}>
-          Play Again
-        </button>
-      ) : (
-        <button className="check-answers-btn" onClick={checkAnswers}>
-          Check Answers
-        </button>
-      )}
-
-      <img
-        src={yellowBlob}
-        alt="yellow blob image"
-        className="yellow-blob small"
-      />
-      <img src={blueBlob} alt="blue blob image" className="blue-blob small" />
-    </div>
+    <Layout>
+      <div className="quiz-container">
+        {questionElements}
+        {showResults && (
+          <div className="results">
+            You scored {getTotalCorrect().totalCorrect} correct out of{" "}
+            {getTotalCorrect().total} questions
+          </div>
+        )}
+        {quizComplete ? (
+          <button className="play-again-btn" onClick={resetQuiz}>
+            Play Again
+          </button>
+        ) : (
+          <button className="check-answers-btn" onClick={checkAnswers}>
+            Check Answers
+          </button>
+        )}
+      </div>
+    </Layout>
   );
 }
